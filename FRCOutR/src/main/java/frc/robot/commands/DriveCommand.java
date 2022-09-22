@@ -30,14 +30,15 @@ public class DriveCommand extends CommandBase {
   @Override
   public void initialize() {
     drive.setDriveCoast();
-    drive.compStart();
+    drive.setLED(-0.29);
+    //drive.compStart();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    drives = controller.getLeftY() * 0.5;
-    turn = controller.getRightX() * 0.55;
+    drives = controller.getLeftY() * 0.2;
+    turn = controller.getRightX() * 0.25;
 
     left = drives - turn;
     right = drives + turn;
@@ -58,9 +59,6 @@ public class DriveCommand extends CommandBase {
       drive.setPWM(0.8);
     }
     if(controller.getRightBumper()){
-      compState = !compState;
-    }
-    if(compState){
       drive.compStart();
     }
     else{

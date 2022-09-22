@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.PWM;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.commands.DriveCommand;
 
@@ -25,6 +26,7 @@ public class Drivetrain extends SubsystemBase {
   private CANSparkMax RDrive2 = new CANSparkMax(4, MotorType.kBrushless);
 
   private PWM servoTest = new PWM(0);
+  private static Spark m_blinkin = new Spark(1);
 
   private CANSparkMax arm = new CANSparkMax(5, MotorType.kBrushless);
 
@@ -59,6 +61,9 @@ public class Drivetrain extends SubsystemBase {
   }
   public void setPWM(double pos){
     servoTest.setPosition(pos);
+  }
+  public void setLED(double val){
+    m_blinkin.set(val);
   }
 
   public void compStart(){
