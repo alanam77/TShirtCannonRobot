@@ -34,11 +34,11 @@ public class DriveCommand extends CommandBase {
     //drive.compStart();
   }
 
-  // Called every time the scheduler runs while the command is scheduled.
+  // Called every time the scheduler runs while the command is scheduled.-
   @Override
   public void execute() {
-    drives = controller.getLeftY() * 0.2;
-    turn = controller.getRightX() * 0.25;
+    drives = Math.copySign(Math.pow(controller.getLeftY(), 2) * 0.2, controller.getLeftY());
+    turn = Math.copySign(Math.pow(controller.getRightX(), 2) * 0.25, controller.getRightX());
 
     left = drives - turn;
     right = drives + turn;
@@ -52,6 +52,7 @@ public class DriveCommand extends CommandBase {
 
     drive.setLeft(left);
     drive.setRight(right);
+
     if(controller.getLeftBumper()){
       drive.setPWM(0.2);
     }
