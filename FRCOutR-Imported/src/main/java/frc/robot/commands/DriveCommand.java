@@ -58,8 +58,15 @@ public class DriveCommand extends CommandBase {
     else{
       drive.setPWM(1);
     }
+    if(controller.getRightBumper()){
+      drive.setPWM2(1);
+    }
+    else{
+      drive.setPWM2(0);
+    }
     if(controller.getAButton()){
       drive.setArm(0.1);
+
     }
     else if(controller.getYButton()){
       drive.setArm(-0.1);

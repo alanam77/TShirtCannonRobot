@@ -27,9 +27,12 @@ public class Drivetrain extends SubsystemBase {
   private CANSparkMax RDrive2 = new CANSparkMax(4, MotorType.kBrushless);
 
   private PWM servoTest = new PWM(0);
+  private PWM servoTest2 = new PWM(2);
+
   private static Spark m_blinkin = new Spark(1);
 
   private CANSparkMax arm = new CANSparkMax(5, MotorType.kBrushless);
+  private CANSparkMax arm2 = new CANSparkMax(6, MotorType.kBrushless);
 
   private Compressor _comp = new Compressor(24, PneumaticsModuleType.REVPH);
   private Solenoid _Solenoid = new Solenoid(24, PneumaticsModuleType.REVPH, 0);
@@ -60,9 +63,15 @@ public class Drivetrain extends SubsystemBase {
   }
   public void setArm(double power){
     arm.set(power);
+    arm2.set(-power);
+
   }
   public void setPWM(double pos){
     servoTest.setPosition(pos);
+  }
+
+  public void setPWM2(double pos){
+   servoTest2.setPosition(pos);
   }
   public void setLED(double val){
     m_blinkin.set(val);
