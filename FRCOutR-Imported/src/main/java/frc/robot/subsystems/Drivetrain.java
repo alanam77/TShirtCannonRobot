@@ -11,7 +11,9 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.PWM;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.commands.DriveCommand;
@@ -30,6 +32,7 @@ public class Drivetrain extends SubsystemBase {
   private CANSparkMax arm = new CANSparkMax(5, MotorType.kBrushless);
 
   private Compressor _comp = new Compressor(24, PneumaticsModuleType.REVPH);
+  private Solenoid _Solenoid = new Solenoid(24, PneumaticsModuleType.REVPH, 0);
 
   public Drivetrain(XboxController controller) {
     this.controller = controller;
@@ -63,6 +66,9 @@ public class Drivetrain extends SubsystemBase {
   }
   public void setLED(double val){
     m_blinkin.set(val);
+  }
+  public void setSolenoid(boolean var){
+    _Solenoid.set(var);
   }
 
   public void compStart(){

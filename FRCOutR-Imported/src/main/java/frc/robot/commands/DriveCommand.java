@@ -67,6 +67,12 @@ public class DriveCommand extends CommandBase {
     else{
       drive.setArm(0);
     }
+    if(controller.getXButtonPressed()){
+      drive.setSolenoid(false);
+    }
+    else if(controller.getBButtonPressed()){
+      drive.setSolenoid(true);
+    }
 
   }
 
